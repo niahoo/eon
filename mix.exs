@@ -1,13 +1,13 @@
 defmodule Eon.Mixfile do
   use Mix.Project
 
-  @version File.read!("VERSION") |> String.strip
+  @version File.read!("VERSION") |> String.trim
 
   def project do
     [
       app: :eon,
       version: @version,
-      elixir: "~> 1.4.0",
+      elixir: "~> 1.6.0",
       description: "Use Elixir maps as a document storage format.",
       deps: deps(),
       package: package(),

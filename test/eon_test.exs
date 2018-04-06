@@ -124,4 +124,18 @@ defmodule EonTest.Eon do
     assert elem(result, 0) == :ok
     assert Map.equal?(elem(result, 1), map)
   end
+
+  test "writing a map with a huge string to an .exs file" do
+    filename = "test/fixtures/huge.exs"
+    map = %{ foo: String.duplicate("Elixir", 10000) }
+    Eon.write(map, filename)
+    result =
+      try do
+        Eon.read(filename)
+      after
+        File.rm! filename
+      end
+    assert elem(result, 0) == :ok
+    assert Map.equal?(elem(result, 1), map)
+  end
 end
